@@ -1,8 +1,8 @@
-namespace: register_user_act
+namespace: AOS_user_registration
 operation:
-  name: Register_user_in_AOS
+  name: AOS_user_registration
   sequential_action:
-    gav: 'com.microfocus.seq:register_user_act.Register_user_in_AOS:1.0.0'
+    gav: 'com.microfocus.seq:AOS_user_registration.AOS_user_registration:1.0.0'
     skills:
       - Web
     settings:
@@ -24,7 +24,7 @@ operation:
           action: Navigate
           default_args: '"http://compass.swinfra.net:8080/"'
           snapshot: ".\\Snapshots\\ssf1.png"
-          highlight_id: '23789846'
+          highlight_id: '19596440'
       - step:
           id: '3'
           object_path: 'Browser("Google").Page("Advantage Shopping").Link("UserMenu")'
@@ -39,59 +39,65 @@ operation:
           highlight_id: '10000000'
       - step:
           id: '5'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("usernameRegisterPage")'
-          action: Set
-          default_args: '"Shobhan"'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebElement("Username")'
+          action: Click
           snapshot: ".\\Snapshots\\ssf4.html"
           highlight_id: '10000000'
       - step:
           id: '6'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("emailRegisterPage")'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("usernameRegisterPage")'
           action: Set
-          default_args: '"shobhan@mf.com"'
+          default_args: '"Shobhan"'
           snapshot: ".\\Snapshots\\ssf5.html"
           highlight_id: '10000000'
       - step:
           id: '7'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("passwordRegisterPage")'
-          action: SetSecure
-          default_args: '"Shobhan34"'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("emailRegisterPage")'
+          action: Set
+          default_args: '"shobhan@mf.com"'
           snapshot: ".\\Snapshots\\ssf6.html"
           highlight_id: '10000000'
       - step:
           id: '8'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("confirm_passwordRegisterPage")'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("passwordRegisterPage")'
           action: SetSecure
           default_args: '"Shobhan34"'
           snapshot: ".\\Snapshots\\ssf7.html"
           highlight_id: '10000000'
       - step:
           id: '9'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("first_nameRegisterPage")'
-          action: Set
-          default_args: '"Shobhan"'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("confirm_passwordRegisterPage")'
+          action: SetSecure
+          default_args: '"Shobhan34"'
           snapshot: ".\\Snapshots\\ssf8.html"
           highlight_id: '10000000'
       - step:
           id: '10'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("last_nameRegisterPage")'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("first_nameRegisterPage")'
           action: Set
-          default_args: '"Das"'
+          default_args: '"Shobhan"'
           snapshot: ".\\Snapshots\\ssf9.html"
           highlight_id: '10000000'
       - step:
           id: '11'
-          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("phone_numberRegisterPage")'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("last_nameRegisterPage")'
           action: Set
-          default_args: '"9876543210"'
+          default_args: '"Das"'
           snapshot: ".\\Snapshots\\ssf10.html"
           highlight_id: '10000000'
       - step:
-          id: '13'
+          id: '12'
+          object_path: 'Browser("Google").Page("Advantage Shopping").WebEdit("phone_numberRegisterPage")'
+          action: Set
+          default_args: '"9876543210"'
+          snapshot: ".\\Snapshots\\ssf11.html"
+          highlight_id: '10000000'
+      - step:
+          id: '14'
           object_path: 'Browser("Google").Page("Advantage Shopping").WebList("countryListboxRegisterPage")'
           action: Select
           default_args: '"India"'
-          snapshot: ".\\Snapshots\\ssf12.html"
+          snapshot: ".\\Snapshots\\ssf13.html"
           highlight_id: '10000000'
       - step:
           id: '15'
@@ -150,7 +156,13 @@ operation:
           object_path: 'Browser("Google")'
           action: Back
           snapshot: ".\\Snapshots\\ssf21.png"
-          highlight_id: '23789846'
+          highlight_id: '19596440'
+      - step:
+          id: '24'
+          object_path: 'Browser("Google").Page("Advantage Shopping").Link("UserMenu_2")'
+          action: Click
+          snapshot: ".\\Snapshots\\ssf22.html"
+          highlight_id: '10000000'
       - step:
           id: '25'
           object_path: 'Browser("Google").Page("Advantage Shopping").Link("Sign out")'
@@ -297,7 +309,7 @@ object_repository:
               custom_replay: ''
               class: Page
               visual_relations: ''
-              last_update_time: '23 April 2020 11:02:12'
+              last_update_time: '23 April 2020 12:02:30'
               basic_identification:
                 property_ref:
                   - micclass
@@ -485,7 +497,7 @@ object_repository:
                     custom_replay: ''
                     class: WebList
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -508,12 +520,12 @@ object_repository:
                           - acc_name
                       algorithm: Mercury.TolerantPriority
                       active: true
-                    name: City
+                    name: Username
                     child_objects: []
                     properties:
                       - property:
                           value:
-                            value: '28'
+                            value: '74'
                             regular_expression: false
                           name: width
                           hidden: true
@@ -529,7 +541,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: '714'
+                            value: '300'
                             regular_expression: false
                           name: view_y
                           hidden: true
@@ -537,7 +549,7 @@ object_repository:
                           type: NUMBER
                       - property:
                           value:
-                            value: '1004'
+                            value: '563'
                             regular_expression: false
                           name: view_x
                           hidden: true
@@ -553,7 +565,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: City
+                            value: Username
                             regular_expression: false
                           name: innertext
                           hidden: false
@@ -601,149 +613,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '788'
-                            regular_expression: false
-                          name: abs_y
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: '1004'
-                            regular_expression: false
-                          name: abs_x
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: '//SEC-VIEW/DIV/LABEL[normalize-space()="City"]'
-                            regular_expression: false
-                          name: _xpath
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                    comments: ''
-                    custom_replay: ''
-                    class: WebElement
-                    visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
-                    basic_identification:
-                      property_ref:
-                        - micclass
-                        - innertext
-                        - html tag
-                        - _xpath
-                      ordinal_identifier: ''
-                - object:
-                    smart_identification:
-                      base_filter:
-                        property_ref:
-                          - micclass
-                          - html tag
-                      optional_filter:
-                        property_ref:
-                          - html id
-                          - class
-                          - innertext
-                          - visible
-                          - acc_name
-                      algorithm: Mercury.TolerantPriority
-                      active: true
-                    name: AfganistanAlbaniaAlgeriaAmeric
-                    child_objects: []
-                    properties:
-                      - property:
-                          value:
-                            value: '357'
-                            regular_expression: false
-                          name: width
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: '-1'
-                            regular_expression: false
-                          name: visible
-                          hidden: true
-                          read_only: true
-                          type: BOOL
-                      - property:
-                          value:
-                            value: '694'
-                            regular_expression: false
-                          name: view_y
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: '563'
-                            regular_expression: false
-                          name: view_x
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: WebElement
-                            regular_expression: false
-                          name: micclass
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: AfganistanAlbaniaAlgeriaAmerican SamoaAndoraAngolaAnguillaAntigua and BarbudaArgentinaArmeniaArubaAustraliaAustriaAzerbaijanBahamasBahrainBangladeshBarbadosBelarusBelgiumBelizeBeninBermudaBhutanBoliviaBonaireBosnia and HerzegovinaBotswanaBrazilBruneiBulgariaBurkina FasoBurundi CambodiaCameroonCanadaCanary IslandsCape Verde aranelleCayman IslandsCentral African RepublicChadChileChinaColombiaComoro IslandsCongoCook IslandsCosta RicaCroatiaCubaCyprusCzech RepublicDemocratic Republic of CongoDenmarkDjiboutiDominicaDominican RepublicDutch (Netherlands) AntillesEast TimorEcuadorEgyptEl SalvadorEnglandEquatorial GuineaEritrea EstoniaEthiopiaFalkland IslandsFijiFinlandFranceFrench GuyanaFrench PolynesiaGabonaiseGambiaGeorgiaGermanyGhanaGibraltarGreeceGreenlandGrenadaGuadeloupeGuamGuatemalaGuernseyGuineaGuinea BissauGuyanaHaitiHawaiHeard IslandHondurasHong KongHungaryIcelandIndiaIndonesiaIranIraqIrelandIsle of ManIsraelItalyIvory CostJamaicaJapanJerseyJordanKazakhstanKenyaKiribatiKosovoKuwaitKyrgyzstanLaosLatviaLebanonLesothoLiberiaLibyaLiechtensteinLithuaniaLuxembourgMacauMacedoniaMacquarie IslandMadagascarMalawiMalaysiamaldives IslandsMaliMaltaMaroccoMarshal IslandsMartinique MauritaniaMauritiusMayotteMexicoMicronesiaMidway AtolMoldovaMonacoMongoliaMontenegroMontserratMozambiqueMyanmar (Burma)NamibiaNauruNepalNetherlandNew CaledoniaNew ZealandNicaraguaNigerNigeriaNorfolk IslandsNorth KoreaNorthen IrelandNorwayOmanPakistanPalauPalestinian AuthorityPanamaParaguayPeruPhilippinesPolandPortugalPuerto RicoPuerto RicoQatarReunionRomaniaRussiaRwandaSaint Helena IslandSaint Kitts and NevisSaint Vincent and the GrenadinesSamoaSan MarinoSao TomeSaudi ArabiaScotland SenegalSerbiaSeychelles IslandsSierra LeoneSingaporeSlovakiaSloveniaSolomon IslandsSomaliaSouth AfricaSouth GeorgiaSouth KoreaSouth SudanSpainSri LankaSt. LuciaSudanSurinamSwazilandSwedenSwitzerlandSyriaTadzhikistanTaiwanTanzaniaThailandTogo (Togolese)TokelauTongaTrinidad and TobagoTunisiaTurkeyTurkmenistan Turks and Caicos IslandsUgandaUkraineUnited Arab EmiratesUnited KingdomUnited StatesUruguayUzbekistanVanuatuVaticanVaticanVenezuelaVietnamVirgin Islands (UK)Virgin Islands (USA)WalesWallis and Futuna IslandsYemenZambiaZanzibar Zimbabwe Country
-                            regular_expression: false
-                          name: innertext
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: DIV
-                            regular_expression: false
-                          name: html tag
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: ''
-                            regular_expression: false
-                          name: html id
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: '54'
-                            regular_expression: false
-                          name: height
-                          hidden: true
-                          read_only: true
-                          type: NUMBER
-                      - property:
-                          value:
-                            value: inputContainer ng-scope
-                            regular_expression: false
-                          name: class
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: ''
-                            regular_expression: false
-                          name: acc_name
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: '768'
+                            value: '374'
                             regular_expression: false
                           name: abs_y
                           hidden: true
@@ -759,7 +629,7 @@ object_repository:
                           type: NUMBER
                       - property:
                           value:
-                            value: '//DIV[@id="formCover"]/DIV[3]/DIV[1]/SEC-VIEW[1]/DIV[1]'
+                            value: '//SEC-VIEW/DIV/LABEL[normalize-space()="Username"]'
                             regular_expression: false
                           name: _xpath
                           hidden: true
@@ -769,7 +639,7 @@ object_repository:
                     custom_replay: ''
                     class: WebElement
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -947,7 +817,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -1126,7 +996,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -1305,7 +1175,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -1484,7 +1354,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -1663,7 +1533,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -1842,7 +1712,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2021,7 +1891,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2200,7 +2070,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2379,7 +2249,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2558,7 +2428,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2737,7 +2607,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2799,7 +2669,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: '906'
+                            value: '396'
                             regular_expression: false
                           name: view_y
                           hidden: true
@@ -2871,7 +2741,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '980'
+                            value: '470'
                             regular_expression: false
                           name: abs_y
                           hidden: true
@@ -2889,7 +2759,7 @@ object_repository:
                     custom_replay: ''
                     class: WebCheckBox
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -2951,7 +2821,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: '869'
+                            value: '359'
                             regular_expression: false
                           name: view_y
                           hidden: true
@@ -3023,7 +2893,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '943'
+                            value: '433'
                             regular_expression: false
                           name: abs_y
                           hidden: true
@@ -3041,7 +2911,7 @@ object_repository:
                     custom_replay: ''
                     class: WebCheckBox
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3104,7 +2974,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: '575'
+                            value: '473'
                             regular_expression: false
                           name: view_y
                           hidden: true
@@ -3184,7 +3054,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '649'
+                            value: '547'
                             regular_expression: false
                           name: abs_y
                           hidden: true
@@ -3202,7 +3072,7 @@ object_repository:
                     custom_replay: ''
                     class: WebButton
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3281,7 +3151,7 @@ object_repository:
                           type: NUMBER
                       - property:
                           value:
-                            value: Shobhan My account My orders Sign out
+                            value: '${Shobhan}'
                             regular_expression: false
                           name: text
                           hidden: false
@@ -3363,7 +3233,7 @@ object_repository:
                     custom_replay: ''
                     class: Link
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3523,7 +3393,7 @@ object_repository:
                     custom_replay: ''
                     class: Link
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3683,7 +3553,7 @@ object_repository:
                     custom_replay: ''
                     class: Link
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3843,7 +3713,7 @@ object_repository:
                     custom_replay: ''
                     class: Link
                     visual_relations: ''
-                    last_update_time: '23 April 2020 11:02:12'
+                    last_update_time: '23 April 2020 12:02:30'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -3918,7 +3788,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '10063'
+                      value: '10088'
                       regular_expression: false
                     name: index
                     hidden: true
@@ -3952,7 +3822,7 @@ object_repository:
               custom_replay: ''
               class: Page
               visual_relations: ''
-              last_update_time: '23 April 2020 11:02:12'
+              last_update_time: '23 April 2020 12:02:30'
               basic_identification:
                 property_ref:
                   - micclass
@@ -4026,7 +3896,7 @@ object_repository:
         custom_replay: ''
         class: Browser
         visual_relations: ''
-        last_update_time: '23 April 2020 11:02:12'
+        last_update_time: '23 April 2020 12:02:30'
         basic_identification:
           property_ref:
             - micclass

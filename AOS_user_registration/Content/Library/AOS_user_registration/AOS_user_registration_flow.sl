@@ -1,10 +1,10 @@
-namespace: register_user_act
+namespace: AOS_user_registration
 flow:
-  name: Register_user_in_AOS_flow
+  name: AOS_user_registration_flow
   workflow:
-  - Register_user_in_AOS:
+  - AOS_user_registration:
       do:
-        register_user_act.Register_user_in_AOS: []
+        AOS_user_registration.AOS_user_registration: []
       publish:
       - return_result
       - error_message

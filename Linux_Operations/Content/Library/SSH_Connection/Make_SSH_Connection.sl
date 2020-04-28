@@ -26,13 +26,15 @@ flow:
           io.cloudslang.base.ssh.ssh_flow:
             - host: '${server_name}'
             - port: '${SSH_Port}'
-            - command: ls; useradd sdas1
+            - command: "${Command1 + ';' + Command2 + ';' + Command3}"
             - username: '${username}'
             - password:
                 value: '${password}'
                 sensitive: true
+        publish:
+          - passwd_file_content: '${standard_out}'
         navigate:
-          - SUCCESS: SUCCESS
+          - SUCCESS: write_password_file_content_to_a_file
           - FAILURE: on_failure
     - read_commands_from_file:
         do:
@@ -44,6 +46,14 @@ flow:
           - Command3: '${read_text.splitlines()[2]}'
         navigate:
           - SUCCESS: ssh_flow
+          - FAILURE: on_failure
+    - write_password_file_content_to_a_file:
+        do:
+          io.cloudslang.base.filesystem.write_to_file:
+            - file_path: "${'D:\\\\RPA_TestBed\\\\Password_file_of_' + server_name + '.txt'}"
+            - text: '${passwd_file_content}'
+        navigate:
+          - SUCCESS: SUCCESS
           - FAILURE: on_failure
   results:
     - FAILURE
@@ -60,12 +70,15 @@ extensions:
       ssh_flow:
         x: 700
         'y': 150
+      write_password_file_content_to_a_file:
+        x: 1000
+        'y': 150
         navigate:
-          40b5a668-02fd-1eb0-d239-3f720fac8067:
-            targetId: 2cd12913-6d97-29dc-c4cf-3283eae0428e
+          85298fcf-36e4-adb1-cea4-800048ffed8a:
+            targetId: f81a5110-e854-be0d-47aa-720f2c6b3870
             port: SUCCESS
     results:
       SUCCESS:
-        2cd12913-6d97-29dc-c4cf-3283eae0428e:
-          x: 1000
+        f81a5110-e854-be0d-47aa-720f2c6b3870:
+          x: 1300
           'y': 150

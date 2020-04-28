@@ -1,33 +1,30 @@
 ########################################################################################################################
 #!!
-#! @input SSH_Hostname: Provide Linux Hostname for this operation
 #!!#
 ########################################################################################################################
 namespace: SSH_Connection
 flow:
   name: Make_SSH_Connection
   inputs:
-    - SSH_Hostname: savana.hpeswlab.net
-    - username: root
-    - password:
-        default: 'Zerina34@dm!n'
-        sensitive: true
     - SSH_Port:
         default: '22'
         required: false
-    - Linux_Server_Details: "D:\\\\RPA_TestBed\\\\Linux_Server_Details.txt"
-    - CommandList: "D:\\\\RPA_TestBed\\\\CommandList.txt"
   workflow:
     - read_server_details:
         do:
-          io.cloudslang.base.filesystem.read_from_file: []
+          io.cloudslang.base.filesystem.read_from_file:
+            - file_path: "D:\\\\RPA_TestBed\\\\Linux_Server_Details.txt"
+        publish:
+          - server_name: '${read_text.splitlines()[0]}'
+          - username: '${read_text.splitlines()[1]}'
+          - password: '${read_text.splitlines()[2]}'
         navigate:
           - SUCCESS: read_commands_from_file
           - FAILURE: on_failure
     - ssh_flow:
         do:
           io.cloudslang.base.ssh.ssh_flow:
-            - host: '${SSH_Hostname}'
+            - host: '${server_name}'
             - port: '${SSH_Port}'
             - command: ls; useradd sdas1
             - username: '${username}'
@@ -39,7 +36,12 @@ flow:
           - FAILURE: on_failure
     - read_commands_from_file:
         do:
-          io.cloudslang.base.filesystem.read_from_file: []
+          io.cloudslang.base.filesystem.read_from_file:
+            - file_path: "D:\\\\RPA_TestBed\\\\CommandList.txt"
+        publish:
+          - Command1: '${read_text.splitlines()[0]}'
+          - Command2: '${read_text.splitlines()[1]}'
+          - Command3: '${read_text.splitlines()[2]}'
         navigate:
           - SUCCESS: ssh_flow
           - FAILURE: on_failure

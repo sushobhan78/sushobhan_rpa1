@@ -10,6 +10,11 @@ flow:
         default: '22'
         required: false
   workflow:
+    - Read_Servers_N_User_Credentials:
+        do:
+          io.cloudslang.base.excel.get_cell: []
+        navigate:
+          - FAILURE: on_failure
     - read_server_details:
         do:
           io.cloudslang.base.filesystem.read_from_file:
@@ -19,7 +24,6 @@ flow:
           - username: '${read_text.splitlines()[1]}'
           - password: '${read_text.splitlines()[2]}'
         navigate:
-          - SUCCESS: read_commands_from_file
           - FAILURE: on_failure
     - Run_Commands_Remotely:
         do:
@@ -55,11 +59,6 @@ flow:
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
-    - Read_Servers_N_User_Credentials:
-        do:
-          io.cloudslang.base.excel.get_cell: []
-        navigate:
-          - FAILURE: on_failure
   results:
     - FAILURE
     - SUCCESS
@@ -67,8 +66,8 @@ extensions:
   graph:
     steps:
       read_server_details:
-        x: 259
-        'y': 153
+        x: 189
+        'y': 311
       Run_Commands_Remotely:
         x: 700
         'y': 150
@@ -83,7 +82,7 @@ extensions:
             targetId: f81a5110-e854-be0d-47aa-720f2c6b3870
             port: SUCCESS
       Read_Servers_N_User_Credentials:
-        x: 67
+        x: 66
         'y': 135
     results:
       SUCCESS:

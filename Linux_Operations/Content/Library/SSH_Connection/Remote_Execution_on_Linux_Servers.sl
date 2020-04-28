@@ -55,6 +55,11 @@ flow:
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
+    - Read_Servers_N_User_Credentials:
+        do:
+          io.cloudslang.base.excel.get_cell: []
+        navigate:
+          - FAILURE: on_failure
   results:
     - FAILURE
     - SUCCESS
@@ -62,7 +67,10 @@ extensions:
   graph:
     steps:
       read_server_details:
-        x: 100
+        x: 259
+        'y': 153
+      Run_Commands_Remotely:
+        x: 700
         'y': 150
       read_commands_from_file:
         x: 400
@@ -74,9 +82,9 @@ extensions:
           85298fcf-36e4-adb1-cea4-800048ffed8a:
             targetId: f81a5110-e854-be0d-47aa-720f2c6b3870
             port: SUCCESS
-      Run_Commands_Remotely:
-        x: 700
-        'y': 150
+      Read_Servers_N_User_Credentials:
+        x: 67
+        'y': 135
     results:
       SUCCESS:
         f81a5110-e854-be0d-47aa-720f2c6b3870:

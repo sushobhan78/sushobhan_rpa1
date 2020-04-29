@@ -9,21 +9,33 @@ flow:
     - SSH_Port:
         default: '22'
         required: false
+    - excel_path: "D:\\\\RPA_TestBed\\\\server_details.xlsx"
+    - sheet: Servers_N_Credentials
+    - servername_header: Server_DNS_Name
+    - username_header: User_Name
+    - password_header: Password
+    - commandset_header: CommandSet
   workflow:
     - Read_Servers_N_User_Credentials:
         do:
-          io.cloudslang.base.excel.get_cell: []
-        navigate:
-          - FAILURE: on_failure
-    - read_server_details:
-        do:
-          io.cloudslang.base.filesystem.read_from_file:
-            - file_path: "D:\\\\RPA_TestBed\\\\Linux_Server_Details.txt"
+          io.cloudslang.base.excel.get_cell:
+            - excel_file_name: '${excel_path}'
+            - worksheet_name: '${sheet}'
+            - has_header: 'yes'
+            - first_row_index: '0'
+            - row_index: '0:1000'
+            - column_index: '0:100'
+            - row_delimiter: '|'
+            - column_delimiter: ','
         publish:
-          - server_name: '${read_text.splitlines()[0]}'
-          - username: '${read_text.splitlines()[1]}'
-          - password: '${read_text.splitlines()[2]}'
+          - data: '${return_result}'
+          - header
+          - servername_index: '${str(header.split(",").index(servename_header))}'
+          - username_index: '${str(header.split(",").index(username_header))}'
+          - password_index: '${str(header.split(",").index(password_header))}'
+          - commandset_index: '${str(header.split(",").index(commandset_header))}'
         navigate:
+          - SUCCESS: read_commands_from_file
           - FAILURE: on_failure
     - Run_Commands_Remotely:
         do:
@@ -41,13 +53,17 @@ flow:
           - SUCCESS: write_password_file_content_to_a_file
           - FAILURE: on_failure
     - read_commands_from_file:
-        do:
-          io.cloudslang.base.filesystem.read_from_file:
-            - file_path: "D:\\\\RPA_TestBed\\\\CommandList.txt"
-        publish:
-          - Command1: '${read_text.splitlines()[0]}'
-          - Command2: '${read_text.splitlines()[1]}'
-          - Command3: '${read_text.splitlines()[2]}'
+        loop:
+          for: 'row in data.split("|")'
+          do:
+            io.cloudslang.base.filesystem.read_from_file:
+              - file_path: "${'D:\\\\RPA_TestBed\\\\' + row.split(\",\")[int(commandset_index)]}"
+          break:
+            - FAILURE
+          publish:
+            - Command1: '${read_text.splitlines()[0]}'
+            - Command2: '${read_text.splitlines()[1]}'
+            - Command3: '${read_text.splitlines()[2]}'
         navigate:
           - SUCCESS: Run_Commands_Remotely
           - FAILURE: on_failure
@@ -65,27 +81,24 @@ flow:
 extensions:
   graph:
     steps:
-      read_server_details:
-        x: 189
-        'y': 311
-      Run_Commands_Remotely:
-        x: 700
+      Read_Servers_N_User_Credentials:
+        x: 100
         'y': 150
       read_commands_from_file:
         x: 400
         'y': 150
+      Run_Commands_Remotely:
+        x: 401
+        'y': 374
       write_password_file_content_to_a_file:
         x: 1000
         'y': 150
         navigate:
-          85298fcf-36e4-adb1-cea4-800048ffed8a:
-            targetId: f81a5110-e854-be0d-47aa-720f2c6b3870
+          9253336f-1853-fd61-786b-66603644d764:
+            targetId: d7d9c2f5-a5f8-df55-57a9-bce8ee11fa00
             port: SUCCESS
-      Read_Servers_N_User_Credentials:
-        x: 66
-        'y': 135
     results:
       SUCCESS:
-        f81a5110-e854-be0d-47aa-720f2c6b3870:
+        d7d9c2f5-a5f8-df55-57a9-bce8ee11fa00:
           x: 1300
           'y': 150

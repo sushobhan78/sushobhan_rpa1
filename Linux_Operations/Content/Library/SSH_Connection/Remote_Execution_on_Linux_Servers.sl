@@ -35,46 +35,18 @@ flow:
           - password_index: '${str(header.split(",").index(password_header))}'
           - commandset_index: '${str(header.split(",").index(commandset_header))}'
         navigate:
-          - SUCCESS: read_commands_from_file
+          - SUCCESS: Remote_Execution_on_Linux_Servers
           - FAILURE: on_failure
-    - Run_Commands_Remotely:
-        do:
-          io.cloudslang.base.ssh.ssh_flow:
-            - host: '${server_name}'
-            - port: '${SSH_Port}'
-            - command: "${Command1 + ';' + Command2 + ';' + Command3}"
-            - username: '${username}'
-            - password:
-                value: '${password}'
-                sensitive: true
-        publish:
-          - passwd_file_content: '${standard_out}'
-        navigate:
-          - SUCCESS: write_password_file_content_to_a_file
-          - FAILURE: on_failure
-    - read_commands_from_file:
+    - Remote_Execution_on_Linux_Servers:
         loop:
-          for: 'row in data.split("|")'
+          for: row in commandset_index
           do:
-            io.cloudslang.base.filesystem.read_from_file:
-              - file_path: "${'D:\\\\RPA_TestBed\\\\' + row.split(\",\")[int(commandset_index)]}"
+            SSH_Connection.Remote_Execution_on_Linux_Servers: []
           break:
             - FAILURE
-          publish:
-            - Command1: '${read_text.splitlines()[0]}'
-            - Command2: '${read_text.splitlines()[1]}'
-            - Command3: '${read_text.splitlines()[2]}'
         navigate:
-          - SUCCESS: Run_Commands_Remotely
           - FAILURE: on_failure
-    - write_password_file_content_to_a_file:
-        do:
-          io.cloudslang.base.filesystem.write_to_file:
-            - file_path: "${'D:\\\\RPA_TestBed\\\\Password_file_of_' + server_name + '.txt'}"
-            - text: '${passwd_file_content}'
-        navigate:
           - SUCCESS: SUCCESS
-          - FAILURE: on_failure
   results:
     - FAILURE
     - SUCCESS
@@ -84,21 +56,15 @@ extensions:
       Read_Servers_N_User_Credentials:
         x: 100
         'y': 150
-      read_commands_from_file:
+      Remote_Execution_on_Linux_Servers:
         x: 400
         'y': 150
-      Run_Commands_Remotely:
-        x: 401
-        'y': 374
-      write_password_file_content_to_a_file:
-        x: 1000
-        'y': 150
         navigate:
-          9253336f-1853-fd61-786b-66603644d764:
-            targetId: d7d9c2f5-a5f8-df55-57a9-bce8ee11fa00
+          af4cac68-24af-381f-5c0f-f78ae117a84d:
+            targetId: 793df4bb-5a5f-af99-a3ba-89da2078a0c9
             port: SUCCESS
     results:
       SUCCESS:
-        d7d9c2f5-a5f8-df55-57a9-bce8ee11fa00:
-          x: 1300
+        793df4bb-5a5f-af99-a3ba-89da2078a0c9:
+          x: 700
           'y': 150

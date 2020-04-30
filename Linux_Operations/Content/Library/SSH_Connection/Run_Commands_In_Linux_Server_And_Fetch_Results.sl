@@ -20,7 +20,7 @@ flow:
           io.cloudslang.base.filesystem.read_from_file:
             - file_path: '${CommandSetFile}'
         publish:
-          - Commands: "${output = ''\nfor x in read_text:\n  x = x.rstrip('\\n')\n  output += x\n  output += ';'\n\nf.close()\noutput=output.rstrip(';')}"
+          - Commands: "${def execute(read_text):\nfor x in read_text:\n  x = x.rstrip('\\n')\n  output += x\n  output += ';'\n\nf.close()\nreturn output.rstrip(';')}"
         navigate:
           - SUCCESS: Run_Commands_Remotely
           - FAILURE: on_failure

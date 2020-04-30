@@ -6,23 +6,21 @@ namespace: SSH_Connection
 flow:
   name: Run_Commands_In_Linux_Server_And_Fetch_Results
   inputs:
-    - CommandSetFile
-    - server_name
-    - ssh_port_no
-    - user_name
-    - password
-    - remote_execution__standard_out_file
-    - remote_execution__standard_err_file
-    - remote_execution__return_result_file
+    - CommandSetFile: "D:\\\\RPA_TestBed\\\\Linux_Server_Details.txt"
+    - server_name: savana.hpeswlab.net
+    - ssh_port_no: '22'
+    - user_name: root
+    - password: 'Zerina34@dm!n'
+    - remote_execution__standard_out_file: 2020_04_30.txt
+    - remote_execution__standard_err_file: 2020_04_30err.txt
+    - remote_execution__return_result_file: 2020_04_30_return_result.txt
   workflow:
     - read_commands_from_file:
         do:
           io.cloudslang.base.filesystem.read_from_file:
             - file_path: '${CommandSetFile}'
         publish:
-          - Command1: '${read_text.splitlines()[0]}'
-          - Command2: '${read_text.splitlines()[1]}'
-          - Command3: '${read_text.splitlines()[2]}'
+          - Commands: "${output = ''\nfor x in read_text:\n  x = x.rstrip('\\n')\n  output += x\n  output += ';'\n\nf.close()\noutput=output.rstrip(';')}"
         navigate:
           - SUCCESS: Run_Commands_Remotely
           - FAILURE: on_failure
@@ -47,7 +45,7 @@ flow:
         do:
           io.cloudslang.base.filesystem.write_to_file:
             - file_path: "${'D:\\\\RPA_TestBed\\\\' + remote_execution__standard_out_file}"
-            - text: '${standard_out}'
+            - text: '${Commands}'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure

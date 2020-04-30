@@ -64,6 +64,9 @@ extensions:
       read_server_details:
         x: 100
         'y': 150
+      Run_Commands_Remotely:
+        x: 700
+        'y': 150
       read_commands_from_file:
         x: 400
         'y': 150
@@ -74,9 +77,6 @@ extensions:
           85298fcf-36e4-adb1-cea4-800048ffed8a:
             targetId: f81a5110-e854-be0d-47aa-720f2c6b3870
             port: SUCCESS
-      Run_Commands_Remotely:
-        x: 700
-        'y': 150
     results:
       SUCCESS:
         f81a5110-e854-be0d-47aa-720f2c6b3870:

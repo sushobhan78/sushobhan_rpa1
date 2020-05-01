@@ -20,7 +20,7 @@ flow:
           io.cloudslang.base.filesystem.read_from_file:
             - file_path: '${CommandSetFile}'
         publish:
-          - Commands: "${def execute(read_text):\nfor x in read_text:\n  x = x.rstrip('\\n')\n  output += x\n  output += ';'\n\nf.close()\nreturn output.rstrip(';')}"
+          - Commands: '${read_text}'
         navigate:
           - SUCCESS: Run_Commands_Remotely
           - FAILURE: on_failure
@@ -29,7 +29,7 @@ flow:
           io.cloudslang.base.ssh.ssh_flow:
             - host: '${server_name}'
             - port: '${ssh_port_no}'
-            - command: "${Command1 + ';' + Command2 + ';' + Command3}"
+            - command: ls
             - username: '${user_name}'
             - password:
                 value: '${password}'

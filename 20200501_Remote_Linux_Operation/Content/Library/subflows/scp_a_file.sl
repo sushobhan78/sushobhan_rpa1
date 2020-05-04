@@ -13,7 +13,7 @@ flow:
                 sensitive: true
             - localFile: "D:\\\\RPA_TestBed\\\\check_broadband_speed.sh"
             - copyAction: to
-            - remoteFile: /root/check_broadband_speed.sh
+            - remoteFile: /sdas/check_broadband_speed.sh
             - privateKeyFile: "D:\\\\ssh_key\\\\sedl006__private_key__20180730.ppk"
         publish:
           - host
@@ -30,7 +30,7 @@ flow:
           io.cloudslang.base.ssh.ssh_flow:
             - host: '${host}'
             - port: '${port}'
-            - command: chmod 777 /root/check_broadband_speed.sh;/root/check_broadband_speed.sh
+            - command: chmod 777 /sdas/check_broadband_speed.sh
             - username: '${username}'
             - password:
                 value: '${password}'

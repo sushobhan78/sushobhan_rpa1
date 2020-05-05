@@ -30,7 +30,7 @@ flow:
           io.cloudslang.base.ssh.ssh_flow:
             - host: '${host}'
             - port: '${port}'
-            - command: chmod 777 /sdas/check_broadband_speed.sh
+            - command: 'chmod 777 /sdas/check_broadband_speed.sh; dos2unix /sdas/check_broadband_speed.sh &&;/sdas/check_broadband_speed.sh'
             - username: '${username}'
             - password:
                 value: '${password}'
